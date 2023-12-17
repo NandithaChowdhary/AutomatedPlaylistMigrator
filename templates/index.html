@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}AUTOMATED PLAYLIST MIGRATOR {% endblock %}
+{% block header %}
+
+<h1> AUTOMATED PLAYLIST MIGRATOR  </h1><br>
+
+{% endblock %}
+{% block app %}
+<form method="POST" action="">
+  {{ form.hidden_tag() }}
+  <fieldset class="form-group">
+      <div class="form-group">
+          {{ form.youtube_playlist.label(class="form-control-label") }}
+          {% if form.youtube_playlist.errors %}
+              {{ form.youtube_playlist(class="form-control form-control-lg is-invalid") }}
+              <div class="invalid-feedback">
+                  {% for error in form.youtube_playlist.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+              </div>
+          {% else %}
+              {{ form.youtube_playlist(class="form-control form-control-lg", placeholder="https://www.youtube.com/playlist?list=PLx0sYbCqOb8TBPRdmBHs5Iftvv9TPboYG") }}
+          {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.spotify_playlist_name.label(class="form-control-label") }}
+        {% if form.spotify_playlist_name.errors %}
+            {{ form.spotify_playlist_name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.spotify_playlist_name.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.spotify_playlist_name(class="form-control form-control-lg", placeholder="New Playlist") }}
+        {% endif %}
+      </div>
+    <div class="form-group">
+        {{ form.submit(class="btn btn-success btn-xs") }}
+    </div>
+    <p>Make your Playlist migration simple with a few clicks<br>Currently works only for Public YouTube Playlist<br>Private Playlist features will be available soon...<br> Feel free to share us your Valuable feedback.</p>
+</fieldset>
+{% endblock %}
